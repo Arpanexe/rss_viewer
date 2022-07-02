@@ -1,0 +1,24 @@
+version: "3"
+services:
+  redis-database:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    environment:
+      ALLOW_EMPTY_PASSWORD: "yes"      
+  api:
+    build: backend
+    depends_on:
+      - redis-database
+    tty: true
+    volumes:
+      - ./backend/bin:/backend/bin:cached,ro
+      - ./backend/src:/backend/src:cached,ro
+    ports:
+      - "3001:3001"
+    environment:
+      CACHE_TTL: "600"
+      PORT: "3001"
+      RSS_API_URL: "https://api.rss2json.com/"
+      REDIS_HOST: "redis-database"
+      REDIS_PORT: "6379"  
