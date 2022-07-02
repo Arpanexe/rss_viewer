@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node bin/www"
+    "start": "node bin/www",
+    "testAll": "nyc --clean --reporter=lcov --reporter=json --report-dir=./reports/coverage/all/ --reporter=text mocha --reporter mochawesome --reporter-options reportDir=reports/tests/core,reportFilename=coreTestReport -t RSSTest -p RSSTestReport --charts true --code true --timeout=6000  --recursive 'test/rss-viewer.service.test.js'",
+		"test": "npm run testAll"
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -15,5 +17,13 @@
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
     "redis": "^4.1.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^6.2.3",
+    "mochawesome": "^4.1.0",
+    "nyc": "^14.1.1",
+    "sinon": "^7.5.0"
   }
 }
