@@ -1,1 +1,1 @@
-export const RSS2JSON_ENDPOINT = 'http://54.152.86.217:3001/rss'
+export const RSS2JSON_ENDPOINT = 'http://localhost:3001/rss'
