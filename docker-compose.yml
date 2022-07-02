@@ -22,3 +22,13 @@ services:
       RSS_API_URL: "https://api.rss2json.com/"
       REDIS_HOST: "redis-database"
       REDIS_PORT: "6379"  
+  app:
+    build: frontend
+    depends_on:
+      - api
+    tty: true
+    volumes:
+      - ./frontend/bin:/frontend/bin:cached,ro
+      - ./frontend/src:/frontend/src:cached,ro
+    ports:
+      - "3000:3000"    
